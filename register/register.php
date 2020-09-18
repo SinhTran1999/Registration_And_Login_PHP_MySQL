@@ -46,6 +46,7 @@
                             <div class="form-row my-4">
                                 <div class="col">
                                     <input type="password" name="confirm_pwd" id="confirm_pwd" class="form-control" placeholder="Confirm Password" required>
+                                    <small id="confirm_error" class="text-danger"></small>
                                 </div>
                             </div>
 
