@@ -23,7 +23,7 @@
                             </div>
                             <img src="./assets/profile/beard.png" style="width: 200px; height: 200px;" class="img rounded-circle" alt="beard">
                             <small class="form-text text-black-50">Choose Image</small>
-                            <input type="file" class="form-control-file" name="profileUpload" id="upload-profile">
+                            <input type="file" form="reg-form" class="form-control-file" name="profileUpload" id="upload-profile">
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">

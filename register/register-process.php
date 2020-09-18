@@ -29,8 +29,37 @@
         $error[] = "You forgot to enter your confirm password";
     }
 
+    $files = $_FILES['profileUpload'];
+    $profileImage = upload_profile('./assets/profile/',$files);
+
     if(empty($error)){
-        echo 'validate';
+        // register a new user
+        // Ở đây sử dụng phương pháp băm mật khẩu để băm mật khẩu cho người dùng
+        $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
+
+        require('mysqli_connect.php');
+
+        // make a query
+        $query = "INSERT INTO user(userID, firstName, lastName, email, password, profileImage)";
+        $query .= "VALUES('',?,?,?,?,?)";
+
+        // Initialize a statement
+        $q = mysqli_stmt_init($con);
+
+        // prepare sql statement
+        mysqli_stmt_prepare($q, $query);
+
+        // bind values
+        mysqli_stmt_bind_param($q, 'sssss', $firstName, $lastName, $email, $hashed_pass, $profileImage);
+        
+        // execute statement
+        mysqli_stmt_execute($q);
+
+        if(mysqli_stmt_affected_rows($q) == 1){
+            print "recoded successfully inserted...!";
+        }else{
+            print "Error while registration...!";
+        }
     }else{
         echo 'not validate';
     }
