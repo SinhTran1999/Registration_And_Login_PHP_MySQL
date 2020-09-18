@@ -2,6 +2,11 @@
     // header.php
     include("header.php");
 ?>
+<?php 
+    if($_SERVER['REQUEST_METHOD'] =='POST'){
+        require('register-process.php');
+    }
+?>
         <!-- registration  -->
         <section id="register">
             <div class="row m-0">
@@ -25,15 +30,15 @@
                         <form action="register.php" method="post" enctype="multipart/form-data" id="reg-form">
                             <div class="form-row">
                                 <div class="col">
-                                    <input type="text" name="firstName" id="firstName" class='form-control' placeholder="First Name">
+                                    <input type="text" value="<?php if(isset($_POST['firstName'])) echo $_POST['firstName'];?>" name="firstName" id="firstName" class='form-control' placeholder="First Name">
                                 </div>
                                 <div class="col">
-                                    <input type="text" name="lastName" id="lastName" class='form-control' placeholder="Last Name">
+                                    <input type="text" value="<?php if(isset($_POST['lastName'])) echo $_POST['lastName'];?>" name="lastName" id="lastName" class='form-control' placeholder="Last Name">
                                 </div>
                             </div>
                             <div class="form-row my-4">
                                 <div class="col">
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                                    <input type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>" name="email" id="email" class="form-control" placeholder="Email" required>
                                 </div>
                             </div>
 
