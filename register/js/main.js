@@ -22,6 +22,7 @@ function readURL(input){
         let reader = new FileReader();
         reader.onload = function(e){
             $("#register .upload-profile-image .img").attr('src', e.target.result);
+            $("#register .upload-profile-image .camera-icon").css({display: "none"});
         }
         reader.readAsDataURL(input.files[0]);
     }
