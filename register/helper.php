@@ -43,4 +43,32 @@
         // return default image
         return $path.$default;
     }
+
+    // get user info
+    function get_user_info($con, $userID){
+        $query = "SELECT firstName, lastName, email, profileImage FROM user WHERE userID =?";
+        $q = mysqli_stmt_init($con);
+
+        mysqli_stmt_prepare($q, $query);
+
+        // bind the statement
+        // ta chỉ muốn ràng buộc giá trị này ngay tại đây, với  i tương ứng interger cho userID
+        mysqli_stmt_bind_param($q, 'i', $userID);
+
+        // execute sql statement
+        mysqli_stmt_execute($q);
+        $result = mysqli_stmt_get_result($q);
+
+        $row = mysqli_fetch_array($result);
+
+        // Cách 1: kiểu bình thường
+        // if(empty($row)){
+        //     return false;
+        // }else{
+        //     return $row;
+        // }
+
+        // Cách 2: sử dụng điều kiện 3 ngôi
+        return empty($row) ? false: $row;
+    }
 ?>
