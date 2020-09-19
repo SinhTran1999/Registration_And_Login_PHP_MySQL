@@ -56,6 +56,25 @@
         mysqli_stmt_execute($q);
 
         if(mysqli_stmt_affected_rows($q) == 1){
+
+            // Thay vì  hiển thị hồ sơ mặc định này, vì vậy ta chỉ muốn hiển thị ở đây đăng ký hồ sơ người dùng
+            // tại đây vì vậy tôi sẽ chỉ lấy hồ sơ đó bằng Session ID
+
+            // sesion này là cách lưu trữ thông tin, ví dụ như một biến để được sử dụng trên nhiều trang
+            // nên ta sẽ tạo ở đây một biến SESSION để truy cập ID user
+
+            // start a new  session,
+            session_start();
+
+            // create session variable
+            // ở đây sẽ chỉ trả lại ID được chèn hiện tại của user và điều này sẽ chỉ lưu trữ ID của họ
+            // vì vậy trong ngoặc đơn mysqli_insert_id là chỉ định tham số kết nối
+            $_SESSION['userID'] = mysqli_insert_id($con);
+
+            // Sau khi ta có ID của mình, ta cũng có thể truy nhập ID này trên tệp login.php, vì vậy bằng
+            // cách sử dụng ID này,ta sẽ lấy thông tin của người dùng và hiển thị hồ sơ người dùng trên trang
+            // login, ở đây sẽ tạo 1 function get_user_infos() trong helper.php để có được tất cả thông tin về người dùng mới
+
             header("Location: login.php");
             exit();
         }else{
