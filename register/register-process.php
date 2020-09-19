@@ -56,7 +56,8 @@
         mysqli_stmt_execute($q);
 
         if(mysqli_stmt_affected_rows($q) == 1){
-            print "recoded successfully inserted...!";
+            header("Location: login.php");
+            exit();
         }else{
             print "Error while registration...!";
         }
